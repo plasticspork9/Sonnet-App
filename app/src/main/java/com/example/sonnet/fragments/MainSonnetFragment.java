@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sonnet.R;
+import com.example.sonnet.controller.SonnetAdapter;
 import com.example.sonnet.model.LinesArray;
 import com.example.sonnet.network.PoetryDBInterface;
 import com.example.sonnet.network.RetrofitSingleton;
@@ -28,10 +29,13 @@ import retrofit2.Retrofit;
 public class MainSonnetFragment extends Fragment {
     private static final String LOGTAG = "TAG TAG TAG";
     private RecyclerView recyclerView;
-    private List<String> linesList = new ArrayList<String>();
+    private List<LinesArray> linesList = new ArrayList<>();
 
     public MainSonnetFragment() {
-        // Required empty public constructor
+    }
+
+    public static MainSonnetFragment newInstance() {
+        return new MainSonnetFragment();
     }
 
 
@@ -45,26 +49,32 @@ public class MainSonnetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        Retrofit retrofit = RetrofitSingleton.getInstance();
-        retrofit.create(PoetryDBInterface.class)
-                .getLines()
-                .enqueue(new Callback<LinesArray>() {
+        Call<List<LinesArray>> call = RetrofitSingleton.getInstance().create(PoetryDBInterface.class).getLines();
+        call.enqueue(new Callback<List<LinesArray>>() {
                     @Override
-                    public void onResponse(Call<LinesArray> call, Response<LinesArray> response) {
-                        Log.d(LOGTAG, "OnResponse: " + response.body().getLines().get(0));
+                    public void onResponse(Call <List<LinesArray>> call, Response<List<LinesArray>> response) {
+                        Log.d(LOGTAG, "OnResponse: " + response.body().get(0).getLines());
+                        linesList = response.body();
 
-                        for (int i = 0; i < response.body().getLines().size(); i++) {
-                            linesList.add(response.body().getLines().get(i));
-                        }
-                        Log.d(LOGTAG, "Size: " + linesList.size());
+                        Log.e(LOGTAG, "Size: " + linesList.size());
 
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                        setRecyclerView(linesList);
+                        recyclerView.setHasFixedSize(true);
                     }
 
                     @Override
-                    public void onFailure(Call<LinesArray> call, Throwable t) {
-                        Log.d(LOGTAG, "OnFailure: " + t.getMessage());
+                    public void onFailure(Call<List<LinesArray>> call, Throwable t) {
+                        Log.e(LOGTAG, "OnFailure: " + t.getMessage());
                     }
                 });
     }
+
+    public void setRecyclerView(List<LinesArray> dataModel) {
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()
+                , LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new SonnetAdapter(dataModel));
+    }
 }
+

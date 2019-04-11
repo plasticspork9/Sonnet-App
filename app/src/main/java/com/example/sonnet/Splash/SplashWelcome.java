@@ -11,7 +11,6 @@ import com.example.sonnet.MainActivity;
 import com.example.sonnet.R;
 
 public class SplashWelcome extends AppCompatActivity {
-
     ImageView splashImage;
     private static int SPLASH_SCREEN_TIMER = 5500;
     private Intent toLoginScreenIntent;
@@ -26,7 +25,6 @@ public class SplashWelcome extends AppCompatActivity {
         Glide.with(SplashWelcome.this)
                 .load(R.drawable.splash_screen_image)
                 .into(splashImage);
-
 
         new Handler().postDelayed(new Runnable() {
             @Override

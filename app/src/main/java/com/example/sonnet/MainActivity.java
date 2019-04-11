@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.sonnet.fragments.MainSonnetFragment;
 import com.example.sonnet.model.LinesArray;
 import com.example.sonnet.network.PoetryDBInterface;
 import com.example.sonnet.network.RetrofitSingleton;
@@ -22,5 +23,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container_framelayout, MainSonnetFragment.newInstance())
+                .addToBackStack(null)
+                .commit();
     }
 }
