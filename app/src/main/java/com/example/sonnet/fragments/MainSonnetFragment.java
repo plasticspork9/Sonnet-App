@@ -7,11 +7,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sonnet.helper.ItemTouchHelperCallback;
+import com.example.sonnet.helper.OnStartDragListener;
 import com.example.sonnet.R;
 import com.example.sonnet.controller.SonnetAdapter;
 import com.example.sonnet.model.LinesArray;
@@ -24,12 +27,12 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
-public class MainSonnetFragment extends Fragment {
+public class MainSonnetFragment extends Fragment implements OnStartDragListener {
     private static final String LOGTAG = "TAG TAG TAG";
     private RecyclerView recyclerView;
     private List<LinesArray> linesList = new ArrayList<>();
+    private ItemTouchHelper itemTouchHelper;
 
     public MainSonnetFragment() {
     }
@@ -75,6 +78,14 @@ public class MainSonnetFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()
                 , LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new SonnetAdapter(dataModel));
+        ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(SonnetAdapter);
+        itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        itemTouchHelper.startDrag(viewHolder);
     }
 }
 
