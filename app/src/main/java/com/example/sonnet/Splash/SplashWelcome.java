@@ -12,7 +12,7 @@ import com.example.sonnet.R;
 
 public class SplashWelcome extends AppCompatActivity {
     ImageView splashImage;
-    private static int SPLASH_SCREEN_TIMER = 5500;
+    private static int SPLASH_SCREEN_TIMER = 5750;
     private Intent toLoginScreenIntent;
 
     @Override
