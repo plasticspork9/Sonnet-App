@@ -1,8 +1,14 @@
 package com.example.sonnet;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.sonnet.fragments.MainSonnetFragment;
 import com.example.sonnet.model.LinesArray;
@@ -29,5 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container_framelayout, MainSonnetFragment.newInstance())
                 .addToBackStack(null)
                 .commit();
+
     }
+
 }

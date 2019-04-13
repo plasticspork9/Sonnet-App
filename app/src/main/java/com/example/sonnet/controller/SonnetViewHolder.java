@@ -24,7 +24,7 @@ class SonnetViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelpe
 
     @Override
     public void onItemSelected() {
-        itemView.setBackgroundColor(Color.LTGRAY);
+        itemView.setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override

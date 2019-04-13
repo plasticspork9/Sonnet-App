@@ -19,6 +19,7 @@ import java.util.List;
 
 public class SonnetAdapter extends RecyclerView.Adapter<SonnetViewHolder> implements ItemTouchHelperAdapter {
     List<LinesArray> linesList;
+
     public SonnetAdapter(){}
 
     public SonnetAdapter(List<LinesArray> linesList) {
