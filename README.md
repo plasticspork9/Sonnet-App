@@ -4,7 +4,7 @@
 The Sonnet App was created with one goal in mind: to allow the average poetry lover to create their own version of Raymond Queneau's "Cent mille milliards de poèmes" (A Hundred Thousand Billion Poems).
 By dragging and swiping, the user is able to replace or re-order the existing sonnet, thereby creating an entirely new work. 
 
-##vOther Documentation
+## Other Documentation
 
 For those interested, linked below is the url for the Trello board associated with the development of the Sonnet App. 
 
