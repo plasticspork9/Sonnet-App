@@ -1,15 +1,16 @@
 package com.example.sonnet.model;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class LinesArray {
-    private List<String> lines = null;
+    private ArrayList<String> lines = null;
 
-    public LinesArray(List<String> lines) {
+    public LinesArray(ArrayList<String> lines) {
         this.lines = lines;
     }
 
-    public List<String> getLines() {
+    public ArrayList<String> getLines() {
         return lines;
     }
 }
