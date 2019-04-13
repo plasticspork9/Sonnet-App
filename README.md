@@ -13,7 +13,7 @@ For those interested, linked below is the url for the Trello board associated wi
 
 ## API Reference
 
-This app is inspired by the PoetryDB API, which can be located [here] (https://github.com/thundercomb/poetrydb/blob/master/README.md)
+This app is inspired by the PoetryDB API, which can be located [here](https://github.com/thundercomb/poetrydb/blob/master/README.md)
 
 ## License
 
